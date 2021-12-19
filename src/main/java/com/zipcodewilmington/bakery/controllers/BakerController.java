@@ -16,7 +16,7 @@ public class BakerController {
         this.service = service;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/bakers/all", method = RequestMethod.GET)
     public ResponseEntity<Iterable<Baker>> index() {
         return new ResponseEntity<>(service.index(), HttpStatus.OK);
     }
@@ -31,12 +31,12 @@ public class BakerController {
         return new ResponseEntity<>(service.create(baker), HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/bakers/", method = RequestMethod.PUT)
+    @RequestMapping(value = "/bakers/update/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Baker> update(@PathVariable Long id, @RequestBody Baker baker) {
         return new ResponseEntity<>(service.update(id, baker), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/bakers/", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/bakers/destroy/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Boolean> destroy(@PathVariable Long id) {
         return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
